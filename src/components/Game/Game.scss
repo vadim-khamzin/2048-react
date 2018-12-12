@@ -1,0 +1,15 @@
+.game {
+    &__row {
+        color: #333;
+    }
+    &__cell {
+        background: #efefef;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+    }
+}
