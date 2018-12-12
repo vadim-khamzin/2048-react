@@ -1,3 +1,5 @@
+let score = 0
+
 const mergeRowValues = (row) => {
     const filteredRow = row.filter(item => item !== null)
     const resultRow = []
@@ -5,7 +7,9 @@ const mergeRowValues = (row) => {
     let i = 0
     while (i < filteredRow.length) {
         if (filteredRow[i] === filteredRow[i + 1]) {
-            resultRow.push( filteredRow[i] + filteredRow[i + 1] )
+            const sum = filteredRow[i] + filteredRow[i + 1]
+            resultRow.push(sum)
+            score += sum
             i += 2
         } else {
             resultRow.push( filteredRow[i] )
@@ -62,23 +66,6 @@ const randomIntegerInRange = (min, max) =>
 const shouldRandomValueAdd = (prevMatrix, nextMatrix) =>
     prevMatrix.toString() !== nextMatrix.toString()
 
-export const moveValues = (matrix, keyCode) => {
-    const directions = {
-        mainAxis: [37, 39],
-        crossAxis: [38, 40]
-    }
-
-    const newMatrix = (directions.mainAxis.includes(keyCode))
-        ? mainAxisMove(matrix, directions.mainAxis.indexOf(keyCode))
-        : (directions.crossAxis.includes(keyCode))
-            ? crossAxisMove(matrix, directions.crossAxis.indexOf(keyCode))
-            : matrix
-
-    return (shouldRandomValueAdd(matrix, newMatrix))
-        ? addRandomValue(newMatrix)
-        : newMatrix
-}
-
 export const addRandomValue = (matrix, count=1) => {
     function add(matrix, count) {
         const matrixToList = (matrix) => matrix.reduce((list, el) => {
@@ -112,3 +99,25 @@ export const addRandomValue = (matrix, count=1) => {
     }
     return add(matrix, count)
 }
+
+const getNewMatrix = (matrix, keyCode) => {
+    const directions = {
+        mainAxis: [37, 39],
+        crossAxis: [38, 40]
+    }
+
+    const newMatrix = (directions.mainAxis.includes(keyCode))
+        ? mainAxisMove(matrix, directions.mainAxis.indexOf(keyCode))
+        : (directions.crossAxis.includes(keyCode))
+            ? crossAxisMove(matrix, directions.crossAxis.indexOf(keyCode))
+            : matrix
+
+    return (shouldRandomValueAdd(matrix, newMatrix))
+        ? addRandomValue(newMatrix)
+        : newMatrix
+}
+
+export const moveValues = (matrix, keyCode) => ({
+    newMatrix: getNewMatrix(matrix, keyCode),
+    score
+})

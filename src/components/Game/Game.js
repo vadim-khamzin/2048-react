@@ -63,7 +63,13 @@ class Game extends Component {
 
     handleKeyDown(key) {
         const { matrix } = this.state
-        this.setState({ matrix: moveValues(matrix, key) })
+        const { newMatrix, score } = moveValues(matrix, key)
+
+        this.setState({
+            matrix: newMatrix
+        })
+
+        this.props.onScore(score)
     }
 }
 
