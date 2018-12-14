@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 import { moveValues, addRandomValue } from './gameLogic'
 
 class Game extends Component {
@@ -71,6 +72,10 @@ class Game extends Component {
 
         this.props.onScore(score)
     }
+}
+
+Game.propTypes = {
+    onScore: PropTypes.func.isRequired
 }
 
 export default Game
