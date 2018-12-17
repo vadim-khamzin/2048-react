@@ -37,9 +37,9 @@ class Game extends Component {
                 {
                     matrix.map((row, i) => (
                         <div key={i} className="game__row">
-                            { row.map((el, j) => (
+                            {row.map((el, j) => (
                                 <span key={j} className="game__cell">
-                                    { el !== null ? el : '*' }
+                                    {el !== null ? el : '*'}
                                 </span>
                             ))}
                         </div>
@@ -49,7 +49,7 @@ class Game extends Component {
         )
     }
 
-    addValueToMatrix(count=1) {
+    addValueToMatrix(count = 1) {
         const { matrix } = this.state
         this.setState({ matrix: addRandomValue(matrix, count) })
     }

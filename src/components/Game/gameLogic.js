@@ -1,19 +1,34 @@
 let score = 0
 
-const mergeRowValues = (row) => {
+const mergeRowValues = (row, moveType) => {
     const filteredRow = row.filter(item => item !== null)
     const resultRow = []
 
-    let i = 0
-    while (i < filteredRow.length) {
-        if (filteredRow[i] === filteredRow[i + 1]) {
-            const sum = filteredRow[i] + filteredRow[i + 1]
-            resultRow.push(sum)
-            score += sum
-            i += 2
-        } else {
-            resultRow.push( filteredRow[i] )
-            i++
+    if (moveType) {
+        let i = filteredRow.length - 1
+        while (i >= 0) {
+            if (filteredRow[i] === filteredRow[i - 1]) {
+                const sum = filteredRow[i] + filteredRow[i - 1]
+                resultRow.unshift(sum)
+                score += sum
+                i -= 2
+            } else {
+                resultRow.unshift(filteredRow[i])
+                i--
+            }
+        }
+    } else {
+        let i = 0
+        while (i < filteredRow.length) {
+            if (filteredRow[i] === filteredRow[i + 1]) {
+                const sum = filteredRow[i] + filteredRow[i + 1]
+                resultRow.push(sum)
+                score += sum
+                i += 2
+            } else {
+                resultRow.push(filteredRow[i])
+                i++
+            }
         }
     }
 
@@ -34,7 +49,7 @@ const fillRow = (_row, moveType) => {
 }
 
 const mainAxisMove = (matrix, moveType) => matrix.map(row => {
-    const mergedRow = mergeRowValues(row)
+    const mergedRow = mergeRowValues(row, moveType)
 
     return fillRow(mergedRow, moveType)
 })
@@ -42,8 +57,8 @@ const mainAxisMove = (matrix, moveType) => matrix.map(row => {
 const crossAxisMove = (matrix, moveType) => {
     const turnMatrix = (matrix) => matrix.reduce((newMatrix, row) => {
         const newRow = [].concat(row)
-        return newMatrix.map(item => item.concat( newRow.pop() ))
-    }, Array(4).fill([]) )
+        return newMatrix.map(item => item.concat(newRow.pop()))
+    }, Array(4).fill([]))
 
     const turnedMatrix = turnMatrix(matrix)
     const matrixAfterMove = mainAxisMove(turnedMatrix, moveType)
@@ -55,18 +70,18 @@ const crossAxisMove = (matrix, moveType) => {
             newItem.unshift(newRow.shift())
             return newItem
         })
-    }, Array(4).fill([]) )
+    }, Array(4).fill([]))
 
     return turnBackMatrix(matrixAfterMove)
 }
 
 const randomIntegerInRange = (min, max) =>
-    Math.floor(Math.random() * (max - min + 1)) + min;
+    Math.floor(Math.random() * (max - min + 1)) + min
 
 const shouldRandomValueAdd = (prevMatrix, nextMatrix) =>
     prevMatrix.toString() !== nextMatrix.toString()
 
-export const addRandomValue = (matrix, count=1) => {
+export const addRandomValue = (matrix, count = 1) => {
     function add(matrix, count) {
         const matrixToList = (matrix) => matrix.reduce((list, el) => {
             return list.concat(el)
@@ -75,7 +90,7 @@ export const addRandomValue = (matrix, count=1) => {
         const convertArrayToObject = (arr) =>
             Object.assign({}, arr)
 
-        const matrixObj = convertArrayToObject( matrixToList(matrix) )
+        const matrixObj = convertArrayToObject(matrixToList(matrix))
 
         const nullCells = Object.entries(matrixObj)
             .filter(([key, value]) => value === null)
@@ -85,7 +100,7 @@ export const addRandomValue = (matrix, count=1) => {
 
         const objToMatrix = (obj) =>
             Object.values(obj).reduce((matrix, el, index, array) => {
-                matrix.push( array.splice(0, 4) )
+                matrix.push(array.splice(0, 4))
                 return matrix
             }, [])
 
@@ -100,7 +115,7 @@ export const addRandomValue = (matrix, count=1) => {
     return add(matrix, count)
 }
 
-const getNewMatrix = (matrix, keyCode) => {
+const getNewMatrix = (matrix, keyCode, addRandomFlag) => {
     const directions = {
         mainAxis: [37, 39],
         crossAxis: [38, 40]
@@ -112,12 +127,12 @@ const getNewMatrix = (matrix, keyCode) => {
             ? crossAxisMove(matrix, directions.crossAxis.indexOf(keyCode))
             : matrix
 
-    return (shouldRandomValueAdd(matrix, newMatrix))
+    return (addRandomFlag && shouldRandomValueAdd(matrix, newMatrix))
         ? addRandomValue(newMatrix)
         : newMatrix
 }
 
-export const moveValues = (matrix, keyCode) => ({
-    newMatrix: getNewMatrix(matrix, keyCode),
+export const moveValues = (matrix, keyCode, addRandomFlag = true) => ({
+    newMatrix: getNewMatrix(matrix, keyCode, addRandomFlag),
     score
 })
