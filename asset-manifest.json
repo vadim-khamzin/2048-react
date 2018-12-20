@@ -1,13 +1,16 @@
 {
-  "main.css": "/2048-react/static/css/main.26188000.chunk.css",
-  "main.js": "/2048-react/static/js/main.e309a688.chunk.js",
-  "main.js.map": "/2048-react/static/js/main.e309a688.chunk.js.map",
-  "static/js/1.20692f63.chunk.js": "/2048-react/static/js/1.20692f63.chunk.js",
-  "static/js/1.20692f63.chunk.js.map": "/2048-react/static/js/1.20692f63.chunk.js.map",
+  "main.css": "/2048-react/static/css/main.f3dd5688.chunk.css",
+  "main.js": "/2048-react/static/js/main.9038a797.chunk.js",
+  "main.js.map": "/2048-react/static/js/main.9038a797.chunk.js.map",
+  "static/css/1.6a1a27fe.chunk.css": "/2048-react/static/css/1.6a1a27fe.chunk.css",
+  "static/js/1.bebe33d8.chunk.js": "/2048-react/static/js/1.bebe33d8.chunk.js",
+  "static/js/1.bebe33d8.chunk.js.map": "/2048-react/static/js/1.bebe33d8.chunk.js.map",
   "runtime~main.js": "/2048-react/static/js/runtime~main.415a33dc.js",
   "runtime~main.js.map": "/2048-react/static/js/runtime~main.415a33dc.js.map",
-  "static/css/main.26188000.chunk.css.map": "/2048-react/static/css/main.26188000.chunk.css.map",
+  "static/media/fonts.scss": "/2048-react/static/media/clearsans-regular-webfont.814038ba.woff",
+  "static/css/main.f3dd5688.chunk.css.map": "/2048-react/static/css/main.f3dd5688.chunk.css.map",
+  "static/css/1.6a1a27fe.chunk.css.map": "/2048-react/static/css/1.6a1a27fe.chunk.css.map",
   "index.html": "/2048-react/index.html",
-  "precache-manifest.4831bd7b0ae7bd4747c1e2fc3bba3783.js": "/2048-react/precache-manifest.4831bd7b0ae7bd4747c1e2fc3bba3783.js",
+  "precache-manifest.2bad98fb20e11e99da2c61e73e113c44.js": "/2048-react/precache-manifest.2bad98fb20e11e99da2c61e73e113c44.js",
   "service-worker.js": "/2048-react/service-worker.js"
 }
