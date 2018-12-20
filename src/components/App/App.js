@@ -21,8 +21,11 @@ class App extends Component {
         const { score } = this.state
 
         return (
-            <div>
-                <Score score={score} />
+            <div className="container">
+                <header className="header">
+                    <h1 className="header__logo">2048</h1>
+                    <Score score={score} />
+                </header>
                 <Game onScore={this.updateScore} />
             </div>
         )

@@ -1,0 +1,19 @@
+body {
+    background: #efefef;
+    font-family: "Clear Sans", sans-serif;
+}
+.container {
+    margin: 0 auto;
+    width: 450px;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+    &__logo {
+        margin: 0;
+        font-size: 70px;
+        color: #776E65;
+    }
+}

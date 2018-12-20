@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 
 const Score = ({ score=0 }) => {
     return (
-        <h3>Счёт: {score}</h3>
+        <div className="score">
+            <span className="score__title">Счет</span>
+            <span className="score__number">{score}</span>
+        </div>
     )
 }
 

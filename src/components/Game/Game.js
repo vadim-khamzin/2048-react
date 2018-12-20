@@ -7,9 +7,12 @@ class Game extends Component {
         super(props)
 
         this.state = {
-            matrix: Array(4).fill(
-                Array(4).fill(null)
-            )
+            matrix: [
+                [null, null, null, null],
+                [null, null, null, null],
+                [null, null, null, null],
+                [null, null, null, null]
+            ]
         }
 
         this.onKeydown = this.onKeydown.bind(this)
@@ -37,9 +40,12 @@ class Game extends Component {
                 {
                     matrix.map((row, i) => (
                         <div key={i} className="game__row">
+
                             {row.map((el, j) => (
                                 <span key={j} className="game__cell">
-                                    {el !== null ? el : '*'}
+                                    {el !== null
+                                        ? <span className={`game__item game__item_${el}`}>{el}</span>
+                                        : null}
                                 </span>
                             ))}
                         </div>
